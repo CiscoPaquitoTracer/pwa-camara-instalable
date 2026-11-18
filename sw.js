@@ -2,7 +2,7 @@
 // Service Worker básico con estrategia Cache First (App Shell).
 // Asincronía solo con .then(), .catch() y Promise.all().
 
-const CACHE_STATIC_NAME = 'static-camara-v3';
+const CACHE_STATIC_NAME = 'static-camara-v4';
 const STATIC_FILES = [
   './',
   './index.html',
@@ -17,7 +17,11 @@ self.addEventListener('install', (event) => {
   console.log('[SW] Instalando', CACHE_STATIC_NAME);
   event.waitUntil(
     caches.open(CACHE_STATIC_NAME)
-      .then((cache) => cache.addAll(STATIC_FILES))
+      // cache: 'reload' ignora la caché HTTP del navegador (GitHub Pages usa max-age=600)
+      // para que la nueva versión no precachee archivos viejos
+      .then((cache) => cache.addAll(
+        STATIC_FILES.map((url) => new Request(url, { cache: 'reload' }))
+      ))
       .then(() => self.skipWaiting())
   );
 });
