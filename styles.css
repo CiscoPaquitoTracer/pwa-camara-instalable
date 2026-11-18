@@ -112,6 +112,13 @@ main {
 .aviso-permiso ul { margin: 0.5rem 0; padding-left: 1.2rem; line-height: 1.6; }
 .aviso-permiso .nota { font-size: 0.85rem; color: var(--texto-suave); }
 
+.pie {
+  text-align: center;
+  padding: 1rem 1rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
 .aviso-ios { border-color: var(--aviso); }
 .icono-compartir {
   display: inline-block;
