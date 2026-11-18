@@ -1,0 +1,121 @@
+:root {
+  --fondo: #0f172a;
+  --superficie: #1e293b;
+  --borde: #334155;
+  --texto: #e2e8f0;
+  --texto-suave: #94a3b8;
+  --acento: #38bdf8;
+  --peligro: #f87171;
+  --aviso: #fbbf24;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  /* Respeta el notch en iPhone en modo standalone */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+.barra h1 { margin: 0; font-size: 1.25rem; }
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.card h2 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+.card p { margin: 0.5rem 0; line-height: 1.5; }
+
+.visor {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#visor-camara {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#visor-camara.espejo { transform: scaleX(-1); }
+
+.visor-vacio {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--texto-suave);
+}
+
+.estado {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  min-height: 1.5em;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn {
+  flex: 1 1 auto;
+  min-height: 44px; /* área táctil mínima recomendada */
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primario { background: var(--acento); color: var(--fondo); }
+.btn-secundario { background: transparent; color: var(--texto); border-color: var(--borde); }
+.btn-peligro { background: transparent; color: var(--peligro); border-color: var(--peligro); }
+
+.barra .btn { flex: 0 0 auto; }
+
+.aviso-permiso { border-color: var(--acento); }
+.aviso-permiso ul { margin: 0.5rem 0; padding-left: 1.2rem; line-height: 1.6; }
+.aviso-permiso .nota { font-size: 0.85rem; color: var(--texto-suave); }
+
+.aviso-ios { border-color: var(--aviso); }
+.icono-compartir {
+  display: inline-block;
+  padding: 0 0.3rem;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+}
