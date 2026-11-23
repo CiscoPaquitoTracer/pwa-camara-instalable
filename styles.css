@@ -19,8 +19,6 @@ body {
   background: var(--fondo);
   color: var(--texto);
   min-height: 100vh;
-  /* Respeta el notch en iPhone en modo standalone */
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .barra {
@@ -32,7 +30,20 @@ body {
   border-bottom: 1px solid var(--borde);
 }
 
-.barra h1 { margin: 0; font-size: 1.25rem; }
+.titulo {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+}
+
+.titulo h1 { margin: 0; font-size: 1.25rem; }
+
+.autor {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--acento);
+}
 
 main {
   max-width: 560px;
@@ -49,38 +60,20 @@ main {
   padding: 1rem;
 }
 
-.card h2 { margin: 0 0 0.5rem; font-size: 1.05rem; }
 .card p { margin: 0.5rem 0; line-height: 1.5; }
-
-.visor {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  background: #000;
-  border-radius: 10px;
-  overflow: hidden;
-}
 
 #visor-camara {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  background: #000;
+  border-radius: 10px;
   display: block;
-}
-
-#visor-camara.espejo { transform: scaleX(-1); }
-
-.visor-vacio {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--texto-suave);
 }
 
 .estado {
   font-size: 0.95rem;
   color: var(--texto-suave);
-  min-height: 1.5em;
 }
 
 .controles {
@@ -91,7 +84,7 @@ main {
 
 .btn {
   flex: 1 1 auto;
-  min-height: 44px; /* área táctil mínima recomendada */
+  min-height: 44px;
   padding: 0.6rem 1rem;
   border-radius: 10px;
   border: 1px solid transparent;
@@ -100,8 +93,6 @@ main {
   cursor: pointer;
 }
 
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
 .btn-primario { background: var(--acento); color: var(--fondo); }
 .btn-secundario { background: transparent; color: var(--texto); border-color: var(--borde); }
 .btn-peligro { background: transparent; color: var(--peligro); border-color: var(--peligro); }
@@ -109,26 +100,4 @@ main {
 .barra .btn { flex: 0 0 auto; }
 
 .aviso-permiso { border-color: var(--acento); }
-.aviso-permiso ul { margin: 0.5rem 0; padding-left: 1.2rem; line-height: 1.6; }
-.aviso-permiso .nota { font-size: 0.85rem; color: var(--texto-suave); }
-
-.titulo {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  column-gap: 0.6rem;
-}
-
-.autor {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--acento);
-}
-
 .aviso-ios { border-color: var(--aviso); }
-.icono-compartir {
-  display: inline-block;
-  padding: 0 0.3rem;
-  border: 1px solid var(--borde);
-  border-radius: 4px;
-}
